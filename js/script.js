@@ -17,7 +17,13 @@ function getDate() {
     });
   function getDateBedroom(date) {
     for (let prop of date.response.listings) {
-      createCard(prop.title, prop.bathroom_number, prop.bedroom_number, prop.price, prop.img_url);
+      createCard(
+        prop.title,
+        prop.bathroom_number,
+        prop.bedroom_number,
+        prop.price,
+        prop.img_url
+      );
     }
   }
 }
