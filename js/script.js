@@ -1,11 +1,6 @@
 let findInput = document.getElementsByClassName("find-item-text")[0];
 const buttonFind = document.getElementsByClassName("find-item-button")[0];
 const output = document.getElementsByClassName("output")[0];
-let title;
-let bathroom_number;
-let bedroom_number;
-let price;
-let img;
 
 buttonFind.addEventListener("click", getDate);
 
@@ -22,13 +17,7 @@ function getDate() {
     });
   function getDateBedroom(date) {
     for (let prop of date.response.listings) {
-      title = prop.title;
-      bathroom_number = prop.bathroom_number;
-      bedroom_number = prop.bedroom_number;
-      price = prop.price_formatted;
-      img = prop.img_url;
-
-      createCard(title, bathroom_number, bedroom_number, price, img);
+      createCard(prop.title, prop.bathroom_number, prop.bedroom_number, prop.price, prop.img_url);
     }
   }
 }
