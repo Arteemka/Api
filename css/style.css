@@ -12,9 +12,7 @@ html {
     vertical-align: middle;
 }
 
-
-
-.find-item-button{
+.find-item-button {
     cursor: pointer;
     margin-top: 20px;
     margin-left: 50px;
@@ -32,10 +30,9 @@ html {
     opacity: 0.9;
 }
 
-.find-item-text
- {
+.find-item-text {
     color: #454545;
-    margin-left:400px;
+    margin-left: 400px;
     border: 1px solid #fff;
     border-bottom: 2px solid #e85f5f;
     padding: 5px 10px 5px 10px;
@@ -48,9 +45,3 @@ html {
     margin-left: -4px;
     width: 150px;
 }
-
-
-
-
-
-
