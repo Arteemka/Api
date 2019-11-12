@@ -37,11 +37,92 @@ html {
     border-bottom: 2px solid #e85f5f;
     padding: 5px 10px 5px 10px;
     font-family: "Times New Roman", Georgia, Serif;
-    width: 500px;
+    width: 560px;
     font-size: 15px;
 }
 
 .find-item-button {
     margin-left: -4px;
     width: 150px;
+}
+
+img {
+    width: 300px;
+    height: 200px;
+}
+
+.output {
+    margin-top: 50px;
+}
+
+.main {
+    cursor: pointer;
+    margin-top: 10px;
+    width: 730px;
+    background: #fff;
+    margin-left: 400px;
+    color: #333;
+    max-height: 200px;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    max-width: 750px;
+}
+
+.main:hover {
+    -webkit-transform: scale(1.05);
+    -ms-transform: scale(1.05);
+    transform: scale(1.05);
+    transition: .5s;
+}
+
+.item:nth-child(2) {
+    position: absolute;
+    white-space: nowrap;
+    overflow: hidden;
+    margin-top: -190px;
+    margin-left: 320px;
+    color: #e85f5f;
+    font-family: "Times New Roman", Georgia, Serif;
+    font-size: 17px;
+    width: 270px;
+}
+
+.item:nth-child(2):after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 40px;
+    height: 100%;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0.2), #fff 100%);
+}
+
+.item:nth-child(3) {
+    position: absolute;
+    margin-top: -150px;
+    margin-left: 320px;
+    color: #e85f5f;
+    font-family: "Times New Roman", Georgia, Serif;
+    font-size: 17px;
+}
+
+.item:nth-child(4) {
+    position: absolute;
+    margin-top: -130px;
+    margin-left: 320px;
+    color: #e85f5f;
+    font-family: "Times New Roman", Georgia, Serif;
+    font-size: 17px;
+}
+
+.item:nth-child(5) {
+    position: absolute;
+    margin-top: -204px;
+    margin-left: 595px;
+    color: #fff;
+    font-family: "Times New Roman", Georgia, Serif;
+    font-size: 17px;
+    background: #e85f5f;
+    padding: 8px;
+    width: 120px;
+    text-align: center;
 }
