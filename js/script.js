@@ -2,6 +2,7 @@ let findInput = document.getElementsByClassName("find-item-text")[0];
 const buttonFind = document.getElementsByClassName("find-item-button")[0];
 const output = document.getElementsByClassName("output")[0];
 let modal = document.getElementsByClassName("modal")[0];
+const flex = document.getElementsByClassName("flex")[0];
 let arr;
 
 buttonFind.addEventListener("click", getDate);
@@ -30,18 +31,18 @@ function getDate() {
       );
     }
 
-    output.addEventListener("click", function(e) {
-      const index = Array.from(e.target.parentElement.children).indexOf(
-        e.target
-      );
+    let elements = document.querySelectorAll(".flex");
 
-      createModal(
-        arr[index].title,
-        arr[index].property_type,
-        arr[index].summary,
-        arr[index].img_url
-      );
-      modal.style.display = "block";
+    elements.forEach(function(element, index) {
+      element.addEventListener("click", function() {
+        createModal(
+          arr[index].title,
+          arr[index].property_type,
+          arr[index].summary,
+          arr[index].img_url
+        );
+        modal.style.display = "block";
+      });
     });
 
     window.addEventListener("click", event => {
@@ -53,86 +54,92 @@ function getDate() {
 }
 
 function createCard(title, bathroom_number, bedroom_number, price, img) {
-  const createMaDivContainer = document.createElement("DIV");
+  const createMainDivContainer = document.createElement("DIV");
   const createSideDivContainer = document.createElement("DIV");
-  const createTableColumOutText = document.createElement("DIV");
-  const createTableColumOutPrice = document.createElement("DIV");
-  const createTableColumOutDate = document.createElement("DIV");
-  const createTableColumOutTitle = document.createElement("DIV");
+  const createFlexDivContainer = document.createElement("DIV");
+  const createFlexItemOutbathroom = document.createElement("DIV");
+  const createFlexItemOutPrice = document.createElement("DIV");
+  const createFlexItemOutbedroom = document.createElement("DIV");
+  const createFlexItemOutTitle = document.createElement("DIV");
   const createTableImg = document.createElement("IMG");
 
-  createMaDivContainer.className = "main";
-  output.appendChild(createMaDivContainer);
+  createFlexDivContainer.className = "flex";
+  output.appendChild(createFlexDivContainer);
+
+  createMainDivContainer.className = "main";
+  createFlexDivContainer.appendChild(createMainDivContainer);
+
+  createSideDivContainer.className = "sidemain";
+  createFlexDivContainer.appendChild(createSideDivContainer);
 
   createTableImg.src = `${img}`;
   createTableImg.className = "img";
-  createSideDivContainer.appendChild(createTableImg);
+  createMainDivContainer.appendChild(createTableImg);
 
-  createSideDivContainer.className = "item img";
-  createMaDivContainer.appendChild(createSideDivContainer);
+  createFlexItemOutTitle.className = "item title";
+  createSideDivContainer.appendChild(createFlexItemOutTitle);
 
-  createTableColumOutTitle.className = "item title";
-  createMaDivContainer.appendChild(createTableColumOutTitle);
+  createFlexItemOutbathroom.className = "item bathroom_number";
+  createSideDivContainer.appendChild(createFlexItemOutbathroom);
 
-  createTableColumOutText.className = "item bathroom_number";
-  createMaDivContainer.appendChild(createTableColumOutText);
+  createFlexItemOutbedroom.className = "item bedroom_number";
+  createSideDivContainer.appendChild(createFlexItemOutbedroom);
 
-  createTableColumOutDate.className = "item bedroom_number";
-  createMaDivContainer.appendChild(createTableColumOutDate);
+  createFlexItemOutPrice.className = "item price";
+  createSideDivContainer.appendChild(createFlexItemOutPrice);
 
-  createTableColumOutPrice.className = "item price";
-  createMaDivContainer.appendChild(createTableColumOutPrice);
-
-  createTableColumOutText.textContent = `BathRooms - ${bathroom_number}`;
-  createTableColumOutDate.textContent = `BedRooms - ${bedroom_number}`;
-  createTableColumOutPrice.textContent = ` Price $ ${price}`;
-  createTableColumOutTitle.textContent = `${title}`;
+  createFlexItemOutbathroom.textContent = `BathRooms - ${bathroom_number}`;
+  createFlexItemOutbedroom.textContent = `BedRooms - ${bedroom_number}`;
+  createFlexItemOutPrice.textContent = ` Price $ ${price}`;
+  createFlexItemOutTitle.textContent = `${title}`;
 }
 
 function createModal(title, type, summary, img) {
   const modalChange = document.getElementsByClassName("modal-main")[0];
 
   if (modalChange === undefined) {
-    const createMaDivContainer = document.createElement("DIV");
-    const createTableColumOutSummary = document.createElement("DIV");
-    const createTableColumOutFlat = document.createElement("DIV");
-    const createTableColumOutTitle = document.createElement("DIV");
+    const createFlexDivContainer = document.createElement("DIV");
+    const createFlexItemOutSummary = document.createElement("DIV");
+    const createFlexItemOutFlat = document.createElement("DIV");
+    const createFlexItemOutTitle = document.createElement("DIV");
     const createSideDivContainer = document.createElement("DIV");
     const createCloseSpan = document.createElement("SPAN");
     const createTableImg = document.createElement("IMG");
+    const createMainDivContainer = document.createElement("DIV");
 
-    createMaDivContainer.className = "modal-main";
-    modal.appendChild(createMaDivContainer);
+    createFlexDivContainer.className = "modal-main";
+    modal.appendChild(createFlexDivContainer);
 
-    createCloseSpan.className = "close";
+    createMainDivContainer.className = "main";
+    createFlexDivContainer.appendChild(createMainDivContainer);
+
+    createSideDivContainer.className = "sidemain";
+    createFlexDivContainer.appendChild(createSideDivContainer);
+
+    createCloseSpan.className = "item2 close";
     createCloseSpan.innerHTML = "&times;";
 
     createTableImg.src = `${img}`;
     createTableImg.className = "img2";
-    createSideDivContainer.appendChild(createTableImg);
+    createMainDivContainer.appendChild(createTableImg);
 
-    createSideDivContainer.className = "item2 img";
-    createMaDivContainer.appendChild(createSideDivContainer);
+    createSideDivContainer.appendChild(createCloseSpan);
 
-    createTableColumOutTitle.className = "item2 title";
-    createMaDivContainer.appendChild(createTableColumOutTitle);
+    createFlexItemOutTitle.className = "item2 title";
+    createSideDivContainer.appendChild(createFlexItemOutTitle);
 
-    createTableColumOutSummary.className = "item2 summary";
-    createMaDivContainer.appendChild(createTableColumOutSummary);
+    createFlexItemOutSummary.className = "item2 summary";
+    createSideDivContainer.appendChild(createFlexItemOutSummary);
 
-    createTableColumOutFlat.className = "item2 flat";
-    createMaDivContainer.appendChild(createTableColumOutFlat);
+    createFlexItemOutFlat.className = "item2 flat";
+    createSideDivContainer.appendChild(createFlexItemOutFlat);
 
-    createMaDivContainer.appendChild(createCloseSpan);
-
-    createTableColumOutFlat.textContent = `Type - ${type}`;
-    createTableColumOutSummary.textContent = `${summary}`;
-    createTableColumOutTitle.textContent = ` title: ${title}`;
+    createFlexItemOutFlat.textContent = `Type - ${type}`;
+    createFlexItemOutSummary.textContent = `${summary}`;
+    createFlexItemOutTitle.textContent = `${title}`;
   }
 
-  document.getElementsByClassName(
-    "item2 title"
-  )[0].textContent = `title: ${title}`;
+  document.getElementsByClassName("item2 title")[0].textContent = `${title}`;
   document.getElementsByClassName(
     "item2 summary"
   )[0].textContent = `${summary}`;
