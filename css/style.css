@@ -55,11 +55,11 @@ html {
     margin-top: 50px;
 }
 
-.main {
+.item-image {
     max-height: 200px;
 }
 
-.flex {
+.item {
     margin-left: 400px;
     cursor: pointer;
     display: flex;
@@ -68,14 +68,14 @@ html {
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
 
-.flex:hover {
+.item:hover {
     -webkit-transform: scale(1.05);
     -ms-transform: scale(1.05);
     transform: scale(1.05);
     transition: .5s;
 }
 
-.item {
+.item-info-block {
     flex-grow: 1;
     background: #fff;
     display: flex;
@@ -84,21 +84,21 @@ html {
     font-size: 17px;
 }
 
-.item:nth-child(1) {
+.title {
     padding: 10px;
     flex-grow: 2;
 }
 
-.item:nth-child(3),
-.item:nth-child(2) {
+.bathroom_number,
+.bedroom_number {
     padding-left: 10px;
 }
 
-.item:nth-child(3) {
+.bedroom_number {
     flex-grow: 2;
 }
 
-.sidemain {
+.item-info {
     flex-basis: 300px;
     flex-shrink: 0;
     display: flex;
@@ -107,7 +107,7 @@ html {
     background-color: #fff;
 }
 
-.item:last-child {
+.price{
     height: 10px;
     padding-left: 30px;
     padding-top: 5px;
@@ -131,7 +131,7 @@ html {
     background-color: rgba(0, 0, 0, 0.5);
 }
 
-.modal-main {
+.item-modal {
     background-color: #fff;
     margin: auto;
     padding: 0;
@@ -145,7 +145,7 @@ html {
     height: 200px;
 }
 
-.item2 {
+.item-info-block2 {
     padding-left: 10px;
     flex-grow: 1;
     background: #fff;
@@ -162,8 +162,8 @@ html {
     font-size: 30px;
 }
 
-.item2:nth-child(2),
-.item2:nth-child(3),
-.item2:nth-child(4) {
+.title2,
+.summary2,
+.flat2 {
     padding-bottom: 10px;
 }

@@ -31,8 +31,8 @@ function getDate() {
       );
     }
 
-    let elements = document.querySelectorAll(".flex");
-
+    let elements = document.querySelectorAll(".item");
+    
     elements.forEach(function(element, index) {
       element.addEventListener("click", function() {
         createModal(
@@ -63,29 +63,29 @@ function createCard(title, bathroom_number, bedroom_number, price, img) {
   const createFlexItemOutTitle = document.createElement("DIV");
   const createTableImg = document.createElement("IMG");
 
-  createFlexDivContainer.className = "flex";
+  createFlexDivContainer.className = "item";
   output.appendChild(createFlexDivContainer);
 
-  createMainDivContainer.className = "main";
+  createMainDivContainer.className = "item-image";
   createFlexDivContainer.appendChild(createMainDivContainer);
 
-  createSideDivContainer.className = "sidemain";
+  createSideDivContainer.className = "item-info";
   createFlexDivContainer.appendChild(createSideDivContainer);
 
   createTableImg.src = `${img}`;
   createTableImg.className = "img";
   createMainDivContainer.appendChild(createTableImg);
 
-  createFlexItemOutTitle.className = "item title";
+  createFlexItemOutTitle.className = "item-info-block title";
   createSideDivContainer.appendChild(createFlexItemOutTitle);
 
-  createFlexItemOutbathroom.className = "item bathroom_number";
+  createFlexItemOutbathroom.className = "item-info-block bathroom_number";
   createSideDivContainer.appendChild(createFlexItemOutbathroom);
 
-  createFlexItemOutbedroom.className = "item bedroom_number";
+  createFlexItemOutbedroom.className = "item-info-block bedroom_number";
   createSideDivContainer.appendChild(createFlexItemOutbedroom);
 
-  createFlexItemOutPrice.className = "item price";
+  createFlexItemOutPrice.className = "item-info-block price";
   createSideDivContainer.appendChild(createFlexItemOutPrice);
 
   createFlexItemOutbathroom.textContent = `BathRooms - ${bathroom_number}`;
@@ -95,7 +95,7 @@ function createCard(title, bathroom_number, bedroom_number, price, img) {
 }
 
 function createModal(title, type, summary, img) {
-  const modalChange = document.getElementsByClassName("modal-main")[0];
+  const modalChange = document.getElementsByClassName("item-modal")[0];
 
   if (modalChange === undefined) {
     const createFlexDivContainer = document.createElement("DIV");
@@ -107,16 +107,16 @@ function createModal(title, type, summary, img) {
     const createTableImg = document.createElement("IMG");
     const createMainDivContainer = document.createElement("DIV");
 
-    createFlexDivContainer.className = "modal-main";
+    createFlexDivContainer.className = "item-modal";
     modal.appendChild(createFlexDivContainer);
 
-    createMainDivContainer.className = "main";
+    createMainDivContainer.className = "item-image";
     createFlexDivContainer.appendChild(createMainDivContainer);
 
-    createSideDivContainer.className = "sidemain";
+    createSideDivContainer.className = "item-info";
     createFlexDivContainer.appendChild(createSideDivContainer);
 
-    createCloseSpan.className = "item2 close";
+    createCloseSpan.className = "item-info-block2 close";
     createCloseSpan.innerHTML = "&times;";
 
     createTableImg.src = `${img}`;
@@ -125,13 +125,13 @@ function createModal(title, type, summary, img) {
 
     createSideDivContainer.appendChild(createCloseSpan);
 
-    createFlexItemOutTitle.className = "item2 title";
+    createFlexItemOutTitle.className = "item-info-block2 title2";
     createSideDivContainer.appendChild(createFlexItemOutTitle);
 
-    createFlexItemOutSummary.className = "item2 summary";
+    createFlexItemOutSummary.className = "item-info-block2 summary2";
     createSideDivContainer.appendChild(createFlexItemOutSummary);
 
-    createFlexItemOutFlat.className = "item2 flat";
+    createFlexItemOutFlat.className = "item-info-block2 flat2";
     createSideDivContainer.appendChild(createFlexItemOutFlat);
 
     createFlexItemOutFlat.textContent = `Type - ${type}`;
@@ -139,12 +139,12 @@ function createModal(title, type, summary, img) {
     createFlexItemOutTitle.textContent = `${title}`;
   }
 
-  document.getElementsByClassName("item2 title")[0].textContent = `${title}`;
+  document.getElementsByClassName("item-info-block2 title2")[0].textContent = `${title}`;
   document.getElementsByClassName(
-    "item2 summary"
+    "item-info-block2 summary2"
   )[0].textContent = `${summary}`;
   document.getElementsByClassName(
-    "item2 flat"
+    "item-info-block2 flat2"
   )[0].textContent = `Type - ${type}`;
   document.querySelector(".img2").src = img;
 
