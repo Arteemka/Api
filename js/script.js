@@ -10,10 +10,15 @@ let close = document.createElement("SPAN");
 let blockTextAndClose = document.createElement("div");
 const createModalItemBox = document.createElement("div");
 let changeButtonLoad = document.querySelector(".button-LoadMore");
+let changeButtonPagination = document.querySelector(".button-Pagination");
 let buttonLoad = document.getElementsByClassName("LoadMore")[0];
+let span = document.getElementsByClassName("page-output")[0];
 let arr = [];
 let pannier = [];
-let page = 1;
+let code = "";
+let size = 100,
+  step = 3,
+  page = 1;
 
 whiteCanvas.appendChild(blockTextAndClose);
 
@@ -28,6 +33,8 @@ createModalItemBox.className = "modal-items";
 
 buttonFind.addEventListener("click", getDate);
 
+document.addEventListener("DOMContentLoaded", init, false);
+
 function getDate(page) {
   fetch(
     `https://api.nestoria.co.uk/api?encoding=json&pretty=1&action=search_listings&country=uk&listing_type=rent&page=${page}&place_name=${findInput.value}`
@@ -41,7 +48,12 @@ function getDate(page) {
     });
 
   function getDateBedroom(date) {
-    arr = [...arr, ...date.response.listings];
+    if (buttonLoad.style.display == "block") {
+      output.innerHTML = "";
+      arr = [...arr, ...date.response.listings];
+    } else {
+      arr = [...date.response.listings];
+    }
 
     for (let prop of arr) {
       createCard(
@@ -265,6 +277,7 @@ function addCardInBox(img, bedroom, title) {
 }
 
 changeButtonLoad.addEventListener("click", function() {
+  document.getElementById("pagination").style.display = "none";
   buttonLoad.style.display = "block";
 });
 
@@ -272,3 +285,98 @@ buttonLoad.addEventListener("click", function() {
   page++;
   getDate(page);
 });
+
+changeButtonPagination.addEventListener("click", function() {
+  buttonLoad.style.display = "none";
+  document.getElementById("pagination").style.display = "block";
+});
+
+function init() {
+  function addPage(a, b) {
+    for (let i = a; i < b; i++) {
+      code += "<a>" + i + "</a>";
+    }
+  }
+
+  function lastPage() {
+    code += "<i>...</i><a>" + size + "</a>";
+  }
+
+  function firstPage() {
+    code += "<a>1</a><i>...</i>";
+  }
+
+  function clickOnPage() {
+    output.innerHTML = "";
+    page = +this.innerHTML;
+
+    startPage();
+    getDate(page);
+  }
+
+  function prevPage() {
+    output.innerHTML = "";
+    page--;
+
+    if (page < 1) {
+      page = 1;
+    }
+
+    getDate(page);
+    startPage();
+  }
+
+  function nextPage() {
+    output.innerHTML = "";
+    page++;
+
+    if (page > size) {
+      page = size;
+    }
+
+    getDate(page);
+    startPage();
+  }
+
+  function currentPage() {
+    let a = document.querySelectorAll("a");
+
+    for (let i = 0; i < a.length; i++) {
+      if (+a[i].innerHTML === page) a[i].className = "current";
+      a[i].addEventListener("click", clickOnPage, false);
+    }
+  }
+
+  function outputOnPage() {
+    span.innerHTML = code;
+    code = "";
+
+    currentPage();
+  }
+
+  function startPage() {
+    if (size < step * 2 + 6) {
+      addPage(1, size + 1);
+    } else if (page < step + 2) {
+      addPage(1, step * 2);
+      lastPage();
+    } else if (page > size - step * 2) {
+      firstPage();
+      addPage(size - step * 2 - 2, size + 1);
+    } else {
+      firstPage();
+      addPage(page - step + 2, page + 4);
+      lastPage();
+    }
+    outputOnPage();
+  }
+
+  document
+    .getElementsByClassName("prev")[0]
+    .addEventListener("click", prevPage, false);
+  document
+    .getElementsByClassName("next")[0]
+    .addEventListener("click", nextPage, false);
+
+  startPage();
+}
