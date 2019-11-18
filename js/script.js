@@ -193,7 +193,7 @@ function createModal(title, type, summary, img) {
   document.getElementsByClassName(
     "item-info-block2 flat2"
   )[0].textContent = `Type - ${type}`;
-  document.querySelector(".img2").src = img;
+  document.querySelector(".img-info-block2").src = img;
 
   const span = document.getElementsByClassName("close")[0];
 
@@ -215,6 +215,18 @@ box.addEventListener("click", function() {
     addCardInBox(item.img_url, item.bedroom_number, item.title);
   });
 
+  let deleteItem = document.querySelectorAll(".close_box");
+
+  deleteItem.forEach(function(item, index) {
+    item.addEventListener("click", function(event) {
+      if (createModalItemBox.childNodes.length === 0) {
+        document.getElementsByTagName("p")[0].style.display = "block";
+      }
+      event.target.parentNode.remove();
+      pannier.splice(index, 1);
+    });
+  });
+
   close.addEventListener("click", function() {
     modalBox.style.display = "none";
   });
@@ -224,6 +236,7 @@ function addCardInBox(img, bedroom, title) {
   const createFlexDivContainer = document.createElement("DIV");
   const createFlexItemOutbedroom = document.createElement("DIV");
   const createFlexItemOutTitle = document.createElement("DIV");
+  const createCloseSpan = document.createElement("SPAN");
   const createImg = document.createElement("IMG");
 
   createFlexDivContainer.className = "item-box";
@@ -233,6 +246,9 @@ function addCardInBox(img, bedroom, title) {
   createImg.src = `${img}`;
   createImg.className = "img-box";
 
+  createCloseSpan.className = "item-box-block close_box";
+  createCloseSpan.innerHTML = "&times;";
+  createFlexDivContainer.appendChild(createCloseSpan);
   createFlexDivContainer.appendChild(createImg);
 
   createFlexItemOutbedroom.className = "item-box-block bedroom_number_box";

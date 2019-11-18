@@ -272,3 +272,11 @@ p {
     font-size: 30px;
     color: #e85f5f;
 }
+
+.close_box {
+    position: absolute;
+    cursor: pointer;
+    font-size: 30px;
+    color: #e85f5f;
+    margin-left: 185px;
+}
