@@ -98,6 +98,7 @@ html {
     flex-grow: 2;
 }
 
+
 .item-info {
     flex-basis: 300px;
     flex-shrink: 0;
@@ -107,7 +108,7 @@ html {
     background-color: #fff;
 }
 
-.price{
+.price {
     height: 10px;
     padding-left: 30px;
     padding-top: 5px;

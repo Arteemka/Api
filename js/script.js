@@ -2,10 +2,10 @@ let findInput = document.getElementsByClassName("find-item-text")[0];
 const buttonFind = document.getElementsByClassName("find-item-button")[0];
 const output = document.getElementsByClassName("output")[0];
 let modal = document.getElementsByClassName("modal")[0];
-const flex = document.getElementsByClassName("flex")[0];
 let arr;
+let pannier = [];
 
-buttonFind.addEventListener("click", getDate);
+buttonFind.addEventListener('click', getDate);
 
 function getDate() {
   fetch(
@@ -18,6 +18,7 @@ function getDate() {
     .catch(function(error) {
       alert(error);
     });
+
   function getDateBedroom(date) {
     arr = date.response.listings;
 
@@ -32,7 +33,7 @@ function getDate() {
     }
 
     let elements = document.querySelectorAll(".item");
-    
+
     elements.forEach(function(element, index) {
       element.addEventListener("click", function() {
         createModal(
@@ -41,6 +42,7 @@ function getDate() {
           arr[index].summary,
           arr[index].img_url
         );
+
         modal.style.display = "block";
       });
     });
@@ -139,7 +141,9 @@ function createModal(title, type, summary, img) {
     createFlexItemOutTitle.textContent = `${title}`;
   }
 
-  document.getElementsByClassName("item-info-block2 title2")[0].textContent = `${title}`;
+  document.getElementsByClassName(
+    "item-info-block2 title2"
+  )[0].textContent = `${title}`;
   document.getElementsByClassName(
     "item-info-block2 summary2"
   )[0].textContent = `${summary}`;
