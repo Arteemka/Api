@@ -165,7 +165,7 @@ function createModal(title, type, summary, img) {
     createCloseSpan.innerHTML = "&times;";
 
     createTableImg.src = `${img}`;
-    createTableImg.className = "img2";
+    createTableImg.className = "img-info-block2";
     createMainDivContainer.appendChild(createTableImg);
 
     createSideDivContainer.appendChild(createCloseSpan);
@@ -231,7 +231,7 @@ function addCardInBox(img, bedroom, title) {
   createModalItemBox.appendChild(createFlexDivContainer);
 
   createImg.src = `${img}`;
-  createImg.className = "img3";
+  createImg.className = "img-box";
 
   createFlexDivContainer.appendChild(createImg);
 
