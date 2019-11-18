@@ -53,8 +53,8 @@ function getDate() {
         event.stopPropagation();
 
         if (pannier.includes(arr[index])) {
-          let index2 = pannier.indexOf(arr[index]);
-          pannier.splice(index2, 1);
+          let itemFavorites = pannier.indexOf(arr[index]);
+          pannier.splice(itemFavorites, 1);
         } else {
           pannier.push(arr[index]);
         }
