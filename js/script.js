@@ -10,7 +10,7 @@ let close = document.createElement("SPAN");
 let blockTextAndClose = document.createElement("div");
 const createModalItemBox = document.createElement("div");
 let changeButtonLoad = document.querySelector(".button-LoadMore");
-let buttonLoad = document.getElementsByClassName('LoadMore')[0];
+let buttonLoad = document.getElementsByClassName("LoadMore")[0];
 let arr = [];
 let pannier = [];
 let page = 1;
@@ -39,9 +39,9 @@ function getDate(page) {
     .catch(function(error) {
       alert(error);
     });
-  
+
   function getDateBedroom(date) {
-    arr = [...arr,...date.response.listings];
+    arr = [...arr, ...date.response.listings];
 
     for (let prop of arr) {
       createCard(
@@ -52,7 +52,7 @@ function getDate(page) {
         prop.img_url
       );
     }
-       
+
     let elements = document.querySelectorAll(".item");
     let favorites = document.querySelectorAll(".favorites");
 
@@ -264,11 +264,11 @@ function addCardInBox(img, bedroom, title) {
   createFlexItemOutTitle.textContent = `${title}`;
 }
 
-changeButtonLoad.addEventListener("click", function () {
-  buttonLoad.style.display='block';
+changeButtonLoad.addEventListener("click", function() {
+  buttonLoad.style.display = "block";
 });
 
-buttonLoad.addEventListener('click',function(){
-page++;
-getDate(page);
+buttonLoad.addEventListener("click", function() {
+  page++;
+  getDate(page);
 });
