@@ -2,10 +2,28 @@ let findInput = document.getElementsByClassName("find-item-text")[0];
 const buttonFind = document.getElementsByClassName("find-item-button")[0];
 const output = document.getElementsByClassName("output")[0];
 let modal = document.getElementsByClassName("modal")[0];
+let box = document.getElementsByClassName("box")[0];
+let modalBox = document.getElementsByClassName("modal-box")[0];
+let whiteCanvas = document.getElementsByClassName("white-canvas")[0];
+let text = document.createElement("P");
+let close = document.createElement("SPAN");
+let blockTextAndClose = document.createElement("div");
+const createModalItemBox = document.createElement("div");
 let arr;
 let pannier = [];
 
-buttonFind.addEventListener('click', getDate);
+whiteCanvas.appendChild(blockTextAndClose);
+
+blockTextAndClose.className = "block-Text-And-Close";
+blockTextAndClose.appendChild(text);
+text.textContent = "Корзина пуста, вы ничего не добавили!!!";
+
+close.className = "close_modal_box";
+blockTextAndClose.appendChild(close);
+close.innerHTML = "&times;";
+createModalItemBox.className = "modal-items";
+
+buttonFind.addEventListener("click", getDate);
 
 function getDate() {
   fetch(
@@ -53,17 +71,22 @@ function getDate() {
         event.stopPropagation();
 
         if (pannier.includes(arr[index])) {
-          let itemFavorites = pannier.indexOf(arr[index]);
-          pannier.splice(itemFavorites, 1);
+          let itemFavorite = pannier.indexOf(arr[index]);
+          pannier.splice(itemFavorite, 1);
         } else {
           pannier.push(arr[index]);
         }
       });
     });
 
-    window.addEventListener("click", event => {
-      if (event.target == modal) {
-        modal.style.display = "none";
+    window.addEventListener("click", function(event) {
+      switch (event.target) {
+        case modal:
+          modal.style.display = "none";
+          break;
+        case modalBox:
+          modalBox.style.display = "none";
+          break;
       }
     });
   }
@@ -92,9 +115,10 @@ function createCard(title, bathroom_number, bedroom_number, price, img) {
   createTableImg.src = `${img}`;
   createTableImg.className = "img";
   createMainDivContainer.appendChild(createTableImg);
-  
+
   createFlexItemOutFavorites.className = "item-info-block favorites";
   createFlexItemOutFavorites.innerHTML = "&#10084;";
+
   createSideDivContainer.appendChild(createFlexItemOutFavorites);
 
   createFlexItemOutTitle.className = "item-info-block title";
@@ -176,4 +200,47 @@ function createModal(title, type, summary, img) {
   span.addEventListener("click", function() {
     modal.style.display = "none";
   });
+}
+
+box.addEventListener("click", function() {
+  createModalItemBox.innerHTML = "";
+  modalBox.style.display = "block";
+
+  if (pannier.length == 0) {
+    blockTextAndClose.getElementsByTagName("p")[0].style.display = "block";
+  }
+
+  pannier.forEach(function(item) {
+    blockTextAndClose.getElementsByTagName("p")[0].style.display = "none";
+    addCardInBox(item.img_url, item.bedroom_number, item.title);
+  });
+
+  close.addEventListener("click", function() {
+    modalBox.style.display = "none";
+  });
+});
+
+function addCardInBox(img, bedroom, title) {
+  const createFlexDivContainer = document.createElement("DIV");
+  const createFlexItemOutbedroom = document.createElement("DIV");
+  const createFlexItemOutTitle = document.createElement("DIV");
+  const createImg = document.createElement("IMG");
+
+  createFlexDivContainer.className = "item-box";
+  whiteCanvas.appendChild(createModalItemBox);
+  createModalItemBox.appendChild(createFlexDivContainer);
+
+  createImg.src = `${img}`;
+  createImg.className = "img3";
+
+  createFlexDivContainer.appendChild(createImg);
+
+  createFlexItemOutbedroom.className = "item-box-block bedroom_number_box";
+  createFlexDivContainer.appendChild(createFlexItemOutbedroom);
+
+  createFlexItemOutTitle.className = "item-box-block title_box";
+  createFlexDivContainer.appendChild(createFlexItemOutTitle);
+
+  createFlexItemOutbedroom.textContent = `Bedroom - ${bedroom}`;
+  createFlexItemOutTitle.textContent = `${title}`;
 }
