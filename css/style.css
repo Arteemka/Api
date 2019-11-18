@@ -141,12 +141,12 @@ html {
     margin-top: 150px;
 }
 
-.img-info-block2 {
+.img-info-modal-block {
     width: 200px;
     height: 200px;
 }
 
-.item-info-block2 {
+.item-info-modal-block {
     padding-left: 10px;
     flex-grow: 1;
     background: #fff;
@@ -163,9 +163,9 @@ html {
     font-size: 30px;
 }
 
-.title2,
-.summary2,
-.flat2 {
+.title-modal,
+.summary-modal,
+.flat-modal {
     padding-bottom: 10px;
 }
 
