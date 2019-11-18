@@ -9,8 +9,11 @@ let text = document.createElement("P");
 let close = document.createElement("SPAN");
 let blockTextAndClose = document.createElement("div");
 const createModalItemBox = document.createElement("div");
-let arr;
+let changeButtonLoad = document.querySelector(".button-LoadMore");
+let buttonLoad = document.getElementsByClassName("LoadMore")[0];
+let arr = [];
 let pannier = [];
+let page = 1;
 
 whiteCanvas.appendChild(blockTextAndClose);
 
@@ -25,9 +28,9 @@ createModalItemBox.className = "modal-items";
 
 buttonFind.addEventListener("click", getDate);
 
-function getDate() {
+function getDate(page) {
   fetch(
-    `https://api.nestoria.co.uk/api?encoding=json&pretty=1&action=search_listings&country=uk&listing_type=rent&page=1&place_name=${findInput.value}`
+    `https://api.nestoria.co.uk/api?encoding=json&pretty=1&action=search_listings&country=uk&listing_type=rent&page=${page}&place_name=${findInput.value}`
   )
     .then(function(response) {
       return response.json();
@@ -38,7 +41,7 @@ function getDate() {
     });
 
   function getDateBedroom(date) {
-    arr = date.response.listings;
+    arr = [...arr, ...date.response.listings];
 
     for (let prop of arr) {
       createCard(
@@ -260,3 +263,12 @@ function addCardInBox(img, bedroom, title) {
   createFlexItemOutbedroom.textContent = `Bedroom - ${bedroom}`;
   createFlexItemOutTitle.textContent = `${title}`;
 }
+
+changeButtonLoad.addEventListener("click", function() {
+  buttonLoad.style.display = "block";
+});
+
+buttonLoad.addEventListener("click", function() {
+  page++;
+  getDate(page);
+});
