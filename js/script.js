@@ -33,6 +33,7 @@ function getDate() {
     }
 
     let elements = document.querySelectorAll(".item");
+    let favorites = document.querySelectorAll(".favorites");
 
     elements.forEach(function(element, index) {
       element.addEventListener("click", function() {
@@ -44,6 +45,19 @@ function getDate() {
         );
 
         modal.style.display = "block";
+      });
+    });
+
+    favorites.forEach(function(element, index) {
+      element.addEventListener("click", function(event) {
+        event.stopPropagation();
+
+        if (pannier.includes(arr[index])) {
+          let index2 = pannier.indexOf(arr[index]);
+          pannier.splice(index2, 1);
+        } else {
+          pannier.push(arr[index]);
+        }
       });
     });
 
@@ -63,6 +77,7 @@ function createCard(title, bathroom_number, bedroom_number, price, img) {
   const createFlexItemOutPrice = document.createElement("DIV");
   const createFlexItemOutbedroom = document.createElement("DIV");
   const createFlexItemOutTitle = document.createElement("DIV");
+  const createFlexItemOutFavorites = document.createElement("DIV");
   const createTableImg = document.createElement("IMG");
 
   createFlexDivContainer.className = "item";
@@ -77,6 +92,10 @@ function createCard(title, bathroom_number, bedroom_number, price, img) {
   createTableImg.src = `${img}`;
   createTableImg.className = "img";
   createMainDivContainer.appendChild(createTableImg);
+  
+  createFlexItemOutFavorites.className = "item-info-block favorites";
+  createFlexItemOutFavorites.innerHTML = "&#10084;";
+  createSideDivContainer.appendChild(createFlexItemOutFavorites);
 
   createFlexItemOutTitle.className = "item-info-block title";
   createSideDivContainer.appendChild(createFlexItemOutTitle);
