@@ -298,14 +298,6 @@ function init() {
     }
   }
 
-  function lastPage() {
-    code += "<i>...</i><a>" + size + "</a>";
-  }
-
-  function firstPage() {
-    code += "<a>1</a><i>...</i>";
-  }
-
   function clickOnPage() {
     output.innerHTML = "";
     page = +this.innerHTML;
@@ -314,25 +306,17 @@ function init() {
     getDate(page);
   }
 
-  function prevPage() {
+  function finishPage() {
     output.innerHTML = "";
-    page--;
-
-    if (page < 1) {
-      page = 1;
-    }
-
+    page = 100;
+    
     getDate(page);
     startPage();
   }
 
-  function nextPage() {
+  function startclickPage() {
     output.innerHTML = "";
-    page++;
-
-    if (page > size) {
-      page = size;
-    }
+    page = 1;
 
     getDate(page);
     startPage();
@@ -355,28 +339,22 @@ function init() {
   }
 
   function startPage() {
-    if (size < step * 2 + 6) {
-      addPage(1, size + 1);
-    } else if (page < step + 2) {
+    if (page < step + 2) {
       addPage(1, step * 2);
-      lastPage();
-    } else if (page > size - step * 2) {
-      firstPage();
-      addPage(size - step * 2 - 2, size + 1);
+    } else if (page > size - step) {
+      addPage(size - step - 1, size + 1);
     } else {
-      firstPage();
-      addPage(page - step + 2, page + 4);
-      lastPage();
+      addPage(page - 2, page + 3);
     }
     outputOnPage();
   }
 
   document
-    .getElementsByClassName("prev")[0]
-    .addEventListener("click", prevPage, false);
+    .getElementsByClassName("finish")[0]
+    .addEventListener("click", finishPage, false);
   document
-    .getElementsByClassName("next")[0]
-    .addEventListener("click", nextPage, false);
+    .getElementsByClassName("start")[0]
+    .addEventListener("click", startclickPage, false);
 
   startPage();
 }

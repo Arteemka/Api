@@ -342,8 +342,8 @@ i:hover {
     background: #fff;
 }
 
-.next,
-.prev {
+.start,
+.finish {
     cursor: pointer;
     position: absolute;
     width: 50px;
@@ -356,7 +356,7 @@ i:hover {
     text-align: center;
 }
 
-.next {
+.finish {
     margin-left: 560px;
     margin-top: -5px;
 }
