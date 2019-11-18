@@ -17,7 +17,6 @@ let arr = [];
 let pannier = [];
 let code = "";
 let size = 100,
-  step = 3,
   page = 1;
 
 whiteCanvas.appendChild(blockTextAndClose);
@@ -309,7 +308,7 @@ function init() {
   function finishPage() {
     output.innerHTML = "";
     page = 100;
-    
+
     getDate(page);
     startPage();
   }
@@ -339,10 +338,10 @@ function init() {
   }
 
   function startPage() {
-    if (page < step + 2) {
-      addPage(1, step * 2);
-    } else if (page > size - step) {
-      addPage(size - step - 1, size + 1);
+    if (page < 5) {
+      addPage(1, 6);
+    } else if (page > 97) {
+      addPage(96, 101);
     } else {
       addPage(page - 2, page + 3);
     }
