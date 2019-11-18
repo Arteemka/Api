@@ -161,22 +161,22 @@ function createModal(title, type, summary, img) {
     createSideDivContainer.className = "item-info";
     createFlexDivContainer.appendChild(createSideDivContainer);
 
-    createCloseSpan.className = "item-info-block2 close";
+    createCloseSpan.className = "item-info-modal-block close";
     createCloseSpan.innerHTML = "&times;";
 
     createTableImg.src = `${img}`;
-    createTableImg.className = "img-info-block2";
+    createTableImg.className = "img-info-modal-block";
     createMainDivContainer.appendChild(createTableImg);
 
     createSideDivContainer.appendChild(createCloseSpan);
 
-    createFlexItemOutTitle.className = "item-info-block2 title2";
+    createFlexItemOutTitle.className = "item-info-modal-block title-modal";
     createSideDivContainer.appendChild(createFlexItemOutTitle);
 
-    createFlexItemOutSummary.className = "item-info-block2 summary2";
+    createFlexItemOutSummary.className = "item-info-modal-block summary-modal";
     createSideDivContainer.appendChild(createFlexItemOutSummary);
 
-    createFlexItemOutFlat.className = "item-info-block2 flat2";
+    createFlexItemOutFlat.className = "item-info-modal-block flat-modal";
     createSideDivContainer.appendChild(createFlexItemOutFlat);
 
     createFlexItemOutFlat.textContent = `Type - ${type}`;
@@ -185,15 +185,15 @@ function createModal(title, type, summary, img) {
   }
 
   document.getElementsByClassName(
-    "item-info-block2 title2"
+    "item-info-modal-block title-modal"
   )[0].textContent = `${title}`;
   document.getElementsByClassName(
-    "item-info-block2 summary2"
+    "item-info-modal-block summary-modal"
   )[0].textContent = `${summary}`;
   document.getElementsByClassName(
-    "item-info-block2 flat2"
+    "item-info-modal-block flat-modal"
   )[0].textContent = `Type - ${type}`;
-  document.querySelector(".img2").src = img;
+  document.querySelector(".img-info-modal-block").src = img;
 
   const span = document.getElementsByClassName("close")[0];
 
@@ -215,6 +215,18 @@ box.addEventListener("click", function() {
     addCardInBox(item.img_url, item.bedroom_number, item.title);
   });
 
+  let deleteItem = document.querySelectorAll(".close_box");
+
+  deleteItem.forEach(function(item, index) {
+    item.addEventListener("click", function(event) {
+      if (createModalItemBox.childNodes.length === 0) {
+        document.getElementsByTagName("p")[0].style.display = "block";
+      }
+      event.target.parentNode.remove();
+      pannier.splice(index, 1);
+    });
+  });
+
   close.addEventListener("click", function() {
     modalBox.style.display = "none";
   });
@@ -224,6 +236,7 @@ function addCardInBox(img, bedroom, title) {
   const createFlexDivContainer = document.createElement("DIV");
   const createFlexItemOutbedroom = document.createElement("DIV");
   const createFlexItemOutTitle = document.createElement("DIV");
+  const createCloseSpan = document.createElement("SPAN");
   const createImg = document.createElement("IMG");
 
   createFlexDivContainer.className = "item-box";
@@ -233,6 +246,9 @@ function addCardInBox(img, bedroom, title) {
   createImg.src = `${img}`;
   createImg.className = "img-box";
 
+  createCloseSpan.className = "item-box-block close_box";
+  createCloseSpan.innerHTML = "&times;";
+  createFlexDivContainer.appendChild(createCloseSpan);
   createFlexDivContainer.appendChild(createImg);
 
   createFlexItemOutbedroom.className = "item-box-block bedroom_number_box";
