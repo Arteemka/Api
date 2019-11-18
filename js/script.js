@@ -50,6 +50,33 @@ function getDate() {
       );
     }
 
+    document.querySelector(".LoadMore").style.display = "block";
+    const showButton = document.querySelector(".LoadMore");
+    const items = document.querySelectorAll(".item");
+    const itemsCount = items.length;
+
+    for (let m = 3; m < itemsCount; m++) {
+      items[m].style.display = "none";
+    }
+
+    let i = 3;
+
+    const callback = event => {
+      if (i >= itemsCount) {
+        alert("Все вы достигли максимума( !");
+        document.querySelector(".LoadMore").style.display = "none";
+        return;
+      }
+
+      items[i++].style.display = "";
+      if (i < itemsCount) {
+        items[i++].style.display = "";
+        items[i++].style.display = "";
+      }
+    };
+
+    showButton.addEventListener("click", callback);
+
     let elements = document.querySelectorAll(".item");
     let favorites = document.querySelectorAll(".favorites");
 

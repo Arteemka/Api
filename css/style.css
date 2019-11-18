@@ -280,3 +280,19 @@ p {
     color: #e85f5f;
     margin-left: 185px;
 }
+
+.LoadMore{
+    position: relative;
+    cursor: pointer;
+    margin-left:700px;
+    color: #fff;
+    text-decoration: none;
+    user-select: none;
+    background: #e85f5f;
+    padding: 7px;
+    border: none;
+    font-size: 15px;
+    color: #fff;
+    display: none;
+    width: 170px;
+}
